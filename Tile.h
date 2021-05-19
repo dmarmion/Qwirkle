@@ -27,6 +27,10 @@ public:
     // Get [letter][number] string representation of the tile
     std::string toString();
 
+    // Get [letter][number] string representation of the tile, coloured
+    // according to the tile's colour
+    std::string toColourString();
+
     // Check if a tile's shape and colour exactly match those of another tile
     bool equals(Tile t);
 
@@ -36,6 +40,9 @@ public:
 private:
    Colour colour;
    Shape shape;
+
+   // Return the text colour escape code corresponding to this tile's colour
+   std::string getColourEscape();
 };
 
 #endif // ASSIGN2_TILE_H

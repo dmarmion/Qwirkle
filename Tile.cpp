@@ -50,10 +50,36 @@ std::string Tile::toString() {
     return stringRepr;
 }
 
+std::string Tile::toColourString() {
+    std::string stringRepr = colour + std::to_string(shape);
+    return getColourEscape() + stringRepr + RESET_TEXT;
+}
+
 bool Tile::equals(Tile t) {
     return t.getColour() == colour && t.getShape() == shape;
 }
 
 bool Tile::hasBlankValue() {
     return colour == NO_COLOUR || shape == NO_SHAPE;
+}
+
+std::string Tile::getColourEscape() {
+    // By default, return the default colour
+    std::string returnVal = RESET_TEXT;
+
+    if (getColour() == RED) {
+        returnVal = RED_TEXT;
+    } else if (getColour() == ORANGE) {
+        returnVal = ORANGE_TEXT;
+    } else if (getColour() == YELLOW) {
+        returnVal = YELLOW_TEXT;
+    } else if (getColour() == GREEN) {
+        returnVal = GREEN_TEXT;
+    } else if (getColour() == BLUE) {
+        returnVal = BLUE_TEXT;
+    } else if (getColour() == PURPLE) {
+        returnVal = PURPLE_TEXT;
+    }
+
+    return returnVal;
 }

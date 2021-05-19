@@ -24,4 +24,13 @@
 
 #define NUM_SHAPES 6
 
+// Text Colour Codes
+#define RESET_TEXT  "\e[0m"
+#define RED_TEXT    "\e[0;31m"
+#define ORANGE_TEXT "\e[0;91m"
+#define YELLOW_TEXT "\e[0;33m"
+#define GREEN_TEXT  "\e[0;32m"
+#define BLUE_TEXT   "\e[0;34m"
+#define PURPLE_TEXT "\e[0;35m"
+
 #endif // ASSIGN1_TILECODES_H
