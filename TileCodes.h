@@ -25,6 +25,7 @@
 #define NUM_SHAPES 6
 
 // Text Colour Codes
+// See https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
 #define RESET_TEXT  "\e[0m"
 #define RED_TEXT    "\e[0;31m"
 #define ORANGE_TEXT "\e[0;91m"
@@ -32,5 +33,14 @@
 #define GREEN_TEXT  "\e[0;32m"
 #define BLUE_TEXT   "\e[0;34m"
 #define PURPLE_TEXT "\e[0;35m"
+
+// Shape Emojis
+// See http://www.unicode.org/emoji/charts/emoji-list.html
+#define CIRCLE_SYMBOL  "●"
+#define STAR_4_SYMBOL  "✦"
+#define DIAMOND_SYMBOL "◆"
+#define SQUARE_SYMBOL  "⏹"
+#define STAR_6_SYMBOL  "✶"
+#define CLOVER_SYMBOL  "🟀"
 
 #endif // ASSIGN1_TILECODES_H

@@ -41,8 +41,11 @@ private:
    Colour colour;
    Shape shape;
 
-   // Return the text colour escape code corresponding to this tile's colour
+   // Get the text colour escape code corresponding to this tile's colour
    std::string getColourEscape();
+
+   // Get an emoji corresponding to the tile's shape
+   std::string getSymbol();
 };
 
 #endif // ASSIGN2_TILE_H
