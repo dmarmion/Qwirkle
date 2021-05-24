@@ -3,16 +3,19 @@
 
 #include "Game.h"
 
-class GameController
-{
+class GameController {
 private:
     Game* game;
     int pCount;
     bool keepGoing;
+
+    // Enhancement toggles
+    bool colourEnabled;
+
 public:
-    GameController(int playerCount);
+    GameController(int playerCount, bool colourEnabled);
     GameController(Player* p1, Player* p2, Board& board, LinkedList& tileBag,
-                   int currentPlayerNo, bool firstTurn);
+                   int currentPlayerNo, bool firstTurn, bool colourEnabled);
     ~GameController();
 
     void addPlayer();
@@ -34,4 +37,4 @@ public:
 
 };
 
-#endif // ASSIGN2_NODE_H
+#endif // ASSIGN2_GAMECONTROLLER_H

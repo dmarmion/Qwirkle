@@ -36,32 +36,21 @@ LinkedList::~LinkedList() {
     }
 }
 
-std::string LinkedList::toString() {
-    std::string str = "";
-
-    if (size > 0) {
-        Node* n = head;
-        while (n != nullptr) {
-            str += n->tile->toString();
-
-            if (n->next != nullptr) {
-                str += ",";
-            }
-
-            n = n->next;
-        }
-    }
-    
-    return str;
+std::string LinkedList::toString() {    
+    return toString(false);
 }
 
-std::string LinkedList::toColourString() {
+std::string LinkedList::toString(bool useColour) {
     std::string str = "";
 
     if (size > 0) {
         Node* n = head;
         while (n != nullptr) {
-            str += n->tile->toColourString();
+            if (useColour) {
+                str += n->tile->toColourString();
+            } else {
+                str += n->tile->toString();
+            }
 
             if (n->next != nullptr) {
                 str += ",";

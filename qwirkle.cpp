@@ -19,8 +19,8 @@ using std::string;
 using std::istringstream;
 
 string promptUser();
-void startNewGame();
-bool loadGame();
+void startNewGame(bool colourEnabled);
+bool loadGame(bool colourEnabled);
 void showCredits();
 void terminateGame();
 
@@ -41,16 +41,16 @@ string promptUser() {
     return input;
 }
 
-void startNewGame() {
+void startNewGame(bool colourEnabled) {
     cout << "Starting a New Game" << endl << endl;
-    GameController* theGame = new GameController(NUM_PLAYERS);
+    GameController* theGame = new GameController(NUM_PLAYERS, colourEnabled);
     cout << "Let's Play!" << endl;
     theGame->gameStart();
     theGame->gameLoop();
     delete theGame;
 }
 
-bool loadGame() {
+bool loadGame(bool colourEnabled) {
     // Get the filename from the user
     cout << "Enter the filename from which to load a game" << endl;
     string filename = promptUser();
@@ -215,7 +215,8 @@ bool loadGame() {
                                                              board,
                                                              tileList,
                                                              currPlayerNo,
-                                                             firstTurn);
+                                                             firstTurn,
+                                                             colourEnabled);
                 theGame->gameLoop();
                 delete theGame;
             } else {
@@ -263,13 +264,20 @@ int main(void) {
     cout << "Welcome to Quirkle!" << endl << "-------------------" << endl;
     atexit(terminationMessage);
 
+    // Enhancement toggles
+    bool colourEnabled = true;
+    // bool symbolsEnabled = true;
+
     bool shouldDisplayMenu = true;
     do {
         cout << "Menu" << endl << "----" << endl;
         cout << "1. New Game" << endl;
         cout << "2. Load Game" << endl;
         cout << "3. Credits (Show student information)" << endl;
-        cout << "4. Quit" << endl << endl;
+        cout << "4. Quit" << endl;
+        cout << "5. Enable/disable coloured printing" << endl;
+        cout << "6. Enable/disable TODO" << endl << endl;
+
         
         istringstream iss (promptUser());
         int selection = 0;
@@ -286,21 +294,25 @@ int main(void) {
             }
         } else {
             if (selection == 1) {
-                startNewGame();
+                startNewGame(colourEnabled);
 
                 // assumes menu should not repeat after game is completed
-                // (incorrect assumption)
                 shouldDisplayMenu = false;       
             } else if (selection == 2) {
-                loadGame();
+                loadGame(colourEnabled);
 
                 // assumes menu should not repeat after game is completed
-                // (incorrect assumption)
                 shouldDisplayMenu = false;
             } else if (selection == 3) {
                 showCredits();
             } else if (selection == 4) {
                 shouldDisplayMenu = false;
+            } else if (selection == 5) {
+                colourEnabled = !colourEnabled;
+
+                cout << "Coloured printing "
+                     << (colourEnabled ? "enabled" : "disabled")
+                     << "." << endl << endl;
             } else {
                 cout << "Sorry, that isn't an option. "
                      << "Please enter a number from 1-4." << endl;

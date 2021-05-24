@@ -12,20 +12,20 @@ using std::endl;
 using std::istringstream;
 using std::string;
 
-GameController::GameController(int playerCount)
-{
+GameController::GameController(int playerCount, bool colourEnabled) {
     this->game = new Game(playerCount);
     this->pCount = playerCount;
-    for (int i = 0; i < pCount; ++i)
-    {
+    for (int i = 0; i < pCount; ++i) {
         addPlayer();
     }
+
     this->keepGoing = true;
+    this->colourEnabled = colourEnabled;
 }
 
 GameController::GameController(Player *p1, Player *p2, Board &board,
                                LinkedList &tileBag, int currentPlayerNo,
-                               bool firstTurn)
+                               bool firstTurn, bool colourEnabled)
 {
     // For milestone 2, this constructor only creates 2-player games.
     this->pCount = 2;
@@ -42,6 +42,8 @@ GameController::GameController(Player *p1, Player *p2, Board &board,
     if (!firstTurn) {
         game->skipFirstTurn();
     }
+
+    this->colourEnabled = colourEnabled;
 
     // If this is not included, the game status will not be displayed on the
     // first turn of a loaded game.
@@ -320,8 +322,8 @@ void GameController::printScoreBoardHand()
          << game->getPlayer(0)->getScore() << endl
          << "Score for " << game->getPlayer(1)->getName() << ": "
          << game->getPlayer(1)->getScore() << endl
-         << game->getBoard()->toString() << endl
+         << game->getBoard()->toString(colourEnabled) << endl
          << endl
          << "Your hand is " << endl
-         << game->getCurrentPlayer()->getHand()->toColourString() << endl;
+         << game->getCurrentPlayer()->getHand()->toString(colourEnabled) << endl;
 }

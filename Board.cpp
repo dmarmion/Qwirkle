@@ -112,6 +112,10 @@ bool Board::placeTile(Tile& tile, char row, int col) {
 }
 
 std::string Board::toString() {
+    return toString(false);
+}
+
+std::string Board::toString(bool useColour) {
     std::string repr = "";
 
     // Whitespace before column labels
@@ -155,7 +159,11 @@ std::string Board::toString() {
 
             // Append the tile only if one exists at that cell
             if (tile != nullptr && !tile->hasBlankValue()) {
-                repr += tile->toColourString();
+                if (useColour) {
+                    repr += tile->toColourString();
+                } else {
+                    repr += tile->toString();
+                }
             } else {
                 repr += "  ";
             }

@@ -30,7 +30,11 @@ public:
     bool placeTile(Tile& tile, char row, int col);
 
     // Get the board in string format, for printing to the console
+    //
+    // No-argument overload maintained for backwards compatibility, assumes
+    // colour is not desired
     std::string toString();
+    std::string toString(bool useColour);
 
     // Get the board in string format, for writing to a game save file
     std::string serialise();
