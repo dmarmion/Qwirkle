@@ -46,14 +46,24 @@ void Tile::setShape(Shape newShape)  {
 }
 
 std::string Tile::toString() {
-    std::string stringRepr = colour + std::to_string(shape);
-    return stringRepr;
+    return toString(false, false);
 }
 
-std::string Tile::toColourString() {
-    // std::string stringRepr = colour + std::to_string(shape);
-    std::string stringRepr = colour + getSymbol();
-    return getColourEscape() + stringRepr + RESET_TEXT;
+std::string Tile::toString(bool useColour, bool useSymbols) {
+    std::string stringRepr = "";
+    stringRepr += colour;
+
+    if (useSymbols) {
+        stringRepr += getSymbol();
+    } else {
+        stringRepr += std::to_string(shape);
+    }
+
+    if (useColour) {
+        stringRepr = getColourEscape() + stringRepr + RESET_TEXT;
+    }
+
+    return stringRepr;
 }
 
 bool Tile::equals(Tile t) {

@@ -25,11 +25,11 @@ public:
     void setShape(Shape newShape);
 
     // Get [letter][number] string representation of the tile
+    //
+    // No-argument overload maintained for backwards compatibility, assumes
+    // colour and unicode symbols are not desired
     std::string toString();
-
-    // Get [letter][number] string representation of the tile, coloured
-    // according to the tile's colour
-    std::string toColourString();
+    std::string toString(bool useColour, bool useSymbols);
 
     // Check if a tile's shape and colour exactly match those of another tile
     bool equals(Tile t);

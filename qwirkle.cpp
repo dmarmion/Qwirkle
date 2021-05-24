@@ -19,8 +19,8 @@ using std::string;
 using std::istringstream;
 
 string promptUser();
-void startNewGame(bool colourEnabled);
-bool loadGame(bool colourEnabled);
+void startNewGame(bool colourEnabled, bool symbolsEnabled);
+bool loadGame(bool colourEnabled, bool symbolsEnabled);
 void showCredits();
 void terminateGame();
 
@@ -41,16 +41,17 @@ string promptUser() {
     return input;
 }
 
-void startNewGame(bool colourEnabled) {
+void startNewGame(bool colourEnabled, bool symbolsEnabled) {
     cout << "Starting a New Game" << endl << endl;
-    GameController* theGame = new GameController(NUM_PLAYERS, colourEnabled);
+    GameController* theGame = new GameController(NUM_PLAYERS, colourEnabled,
+                                                 symbolsEnabled);
     cout << "Let's Play!" << endl;
     theGame->gameStart();
     theGame->gameLoop();
     delete theGame;
 }
 
-bool loadGame(bool colourEnabled) {
+bool loadGame(bool colourEnabled, bool symbolsEnabled) {
     // Get the filename from the user
     cout << "Enter the filename from which to load a game" << endl;
     string filename = promptUser();
@@ -216,7 +217,8 @@ bool loadGame(bool colourEnabled) {
                                                              tileList,
                                                              currPlayerNo,
                                                              firstTurn,
-                                                             colourEnabled);
+                                                             colourEnabled,
+                                                             symbolsEnabled);
                 theGame->gameLoop();
                 delete theGame;
             } else {
@@ -266,7 +268,7 @@ int main(void) {
 
     // Enhancement toggles
     bool colourEnabled = true;
-    // bool symbolsEnabled = true;
+    bool symbolsEnabled = true;
 
     bool shouldDisplayMenu = true;
     do {
@@ -276,7 +278,7 @@ int main(void) {
         cout << "3. Credits (Show student information)" << endl;
         cout << "4. Quit" << endl;
         cout << "5. Enable/disable coloured printing" << endl;
-        cout << "6. Enable/disable TODO" << endl << endl;
+        cout << "6. Enable/disable unicode tile symbols" << endl << endl;
 
         
         istringstream iss (promptUser());
@@ -294,12 +296,12 @@ int main(void) {
             }
         } else {
             if (selection == 1) {
-                startNewGame(colourEnabled);
+                startNewGame(colourEnabled, symbolsEnabled);
 
                 // assumes menu should not repeat after game is completed
                 shouldDisplayMenu = false;       
             } else if (selection == 2) {
-                loadGame(colourEnabled);
+                loadGame(colourEnabled, symbolsEnabled);
 
                 // assumes menu should not repeat after game is completed
                 shouldDisplayMenu = false;
@@ -312,6 +314,12 @@ int main(void) {
 
                 cout << "Coloured printing "
                      << (colourEnabled ? "enabled" : "disabled")
+                     << "." << endl << endl;
+            } else if (selection == 6) {
+                symbolsEnabled = !symbolsEnabled;
+
+                cout << "Unicode tile symbols "
+                     << (symbolsEnabled ? "enabled" : "disabled")
                      << "." << endl << endl;
             } else {
                 cout << "Sorry, that isn't an option. "

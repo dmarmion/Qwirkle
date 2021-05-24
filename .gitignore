@@ -11,5 +11,6 @@ methodPrototyping
 methodPrototyping.cpp
 
 # Saved games for testing
+newgame*
 testgame*
 qwirkled*

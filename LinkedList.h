@@ -11,9 +11,9 @@ public:
     ~LinkedList();
 
     // No-argument overload maintained for backwards compatibility, assumes
-    // colour is not desired
+    // colour and unicode symbols are not desired
     std::string toString();
-    std::string toString(bool useColour);
+    std::string toString(bool useColour, bool useSymbols);
 
     // we won't need addFront or insert, but do them for practise
     void addFront(Tile* tile);

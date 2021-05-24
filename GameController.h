@@ -11,11 +11,13 @@ private:
 
     // Enhancement toggles
     bool colourEnabled;
+    bool symbolsEnabled;
 
 public:
-    GameController(int playerCount, bool colourEnabled);
+    GameController(int playerCount, bool colourEnabled, bool symbolsEnabled);
     GameController(Player* p1, Player* p2, Board& board, LinkedList& tileBag,
-                   int currentPlayerNo, bool firstTurn, bool colourEnabled);
+                   int currentPlayerNo, bool firstTurn, bool colourEnabled,
+                   bool symbolsEnabled);
     ~GameController();
 
     void addPlayer();

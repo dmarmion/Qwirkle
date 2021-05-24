@@ -12,7 +12,8 @@ using std::endl;
 using std::istringstream;
 using std::string;
 
-GameController::GameController(int playerCount, bool colourEnabled) {
+GameController::GameController(int playerCount, bool colourEnabled,
+                               bool symbolsEnabled) {
     this->game = new Game(playerCount);
     this->pCount = playerCount;
     for (int i = 0; i < pCount; ++i) {
@@ -21,12 +22,13 @@ GameController::GameController(int playerCount, bool colourEnabled) {
 
     this->keepGoing = true;
     this->colourEnabled = colourEnabled;
+    this->symbolsEnabled = symbolsEnabled;
 }
 
 GameController::GameController(Player *p1, Player *p2, Board &board,
                                LinkedList &tileBag, int currentPlayerNo,
-                               bool firstTurn, bool colourEnabled)
-{
+                               bool firstTurn, bool colourEnabled,
+                               bool symbolsEnabled) {
     // For milestone 2, this constructor only creates 2-player games.
     this->pCount = 2;
     this->game = new Game(pCount);
@@ -44,6 +46,7 @@ GameController::GameController(Player *p1, Player *p2, Board &board,
     }
 
     this->colourEnabled = colourEnabled;
+    this->symbolsEnabled = symbolsEnabled;
 
     // If this is not included, the game status will not be displayed on the
     // first turn of a loaded game.
@@ -103,8 +106,8 @@ void GameController::gameLoop()
             // Validate and execute move
             moveSuccess = validateAndExecute(input);
 
-            // If the last move emptied the player hand, end the game, this can 
-            // only happen after the TileBag was emptied, so no need to check 
+            // If the last move emptied the player hand, end the game, this can
+            // only happen after the TileBag was emptied, so no need to check
             // for that.
             if (game->getCurrentPlayer()->getHand()->getSize() == 0)
             {
@@ -322,8 +325,9 @@ void GameController::printScoreBoardHand()
          << game->getPlayer(0)->getScore() << endl
          << "Score for " << game->getPlayer(1)->getName() << ": "
          << game->getPlayer(1)->getScore() << endl
-         << game->getBoard()->toString(colourEnabled) << endl
+         << game->getBoard()->toString(colourEnabled, symbolsEnabled) << endl
          << endl
          << "Your hand is " << endl
-         << game->getCurrentPlayer()->getHand()->toString(colourEnabled) << endl;
+         << game->getCurrentPlayer()->getHand()
+                ->toString(colourEnabled, symbolsEnabled) << endl;
 }

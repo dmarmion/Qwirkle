@@ -37,20 +37,16 @@ LinkedList::~LinkedList() {
 }
 
 std::string LinkedList::toString() {    
-    return toString(false);
+    return toString(false, false);
 }
 
-std::string LinkedList::toString(bool useColour) {
+std::string LinkedList::toString(bool useColour, bool useSymbols) {
     std::string str = "";
 
     if (size > 0) {
         Node* n = head;
         while (n != nullptr) {
-            if (useColour) {
-                str += n->tile->toColourString();
-            } else {
-                str += n->tile->toString();
-            }
+            str += n->tile->toString(useColour, useSymbols);
 
             if (n->next != nullptr) {
                 str += ",";

@@ -32,9 +32,9 @@ public:
     // Get the board in string format, for printing to the console
     //
     // No-argument overload maintained for backwards compatibility, assumes
-    // colour is not desired
+    // colour and unicode symbols are not desired
     std::string toString();
-    std::string toString(bool useColour);
+    std::string toString(bool useColour, bool useSymbols);
 
     // Get the board in string format, for writing to a game save file
     std::string serialise();
