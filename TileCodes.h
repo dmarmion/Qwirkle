@@ -35,11 +35,11 @@
 #define PURPLE_TEXT "\e[0;35m"
 
 // Shape Emojis
-// See http://www.unicode.org/emoji/charts/emoji-list.html
+// See https://www.unicode-search.net/unicode-namesearch.pl
 #define CIRCLE_SYMBOL  "●"
 #define STAR_4_SYMBOL  "✦"
 #define DIAMOND_SYMBOL "◆"
-#define SQUARE_SYMBOL  "⏹"
+#define SQUARE_SYMBOL  "■"
 #define STAR_6_SYMBOL  "✶"
 #define CLOVER_SYMBOL  "🟀"
 
