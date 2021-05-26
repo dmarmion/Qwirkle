@@ -114,7 +114,8 @@ void GameController::gameLoop()
             // only happen after the TileBag was emptied, so no need to check
             // for that.
             if (game->getCurrentPlayer()->getHand()->getSize() == 0) {
-                cout << game->getBoard()->toString() << endl;
+                cout << game->getBoard()->toString(colourEnabled,
+                                                   symbolsEnabled) << endl;
                 game->getCurrentPlayer()->setScore(
                     (game->getCurrentPlayer()->getScore() + 6));
                 keepGoing = false;

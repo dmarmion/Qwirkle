@@ -440,7 +440,7 @@ bool Game::swapTile(Tile* t){
     return success;
 }
 
-void Game::drawATile(){
+void Game::drawATile() {
     Tile *nTile = new Tile(*tileBag->getFront());
     currentPlayer->addToHand(nTile);
     tileBag->removeFront();
@@ -451,13 +451,13 @@ Player* Game::getWinner() {
     int score = 0;
     Player* winner = nullptr;
 
-    for (int i = 0; i < pCount; i++)
-    {
-        if (players[i]->getScore() > score)
-        {
+    for (int i = 0; i < pCount; ++i) {
+        if (players[i]->getScore() > score) {
             winner = players[i];
+            score = players[i]->getScore();
         }
     }
+
     return winner;
 }
 
