@@ -28,7 +28,7 @@
 // See https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
 #define RESET_TEXT  "\e[0m"
 #define RED_TEXT    "\e[0;31m"
-#define ORANGE_TEXT "\e[0;91m"
+#define ORANGE_TEXT "\e[38;5;202m"
 #define YELLOW_TEXT "\e[0;33m"
 #define GREEN_TEXT  "\e[0;32m"
 #define BLUE_TEXT   "\e[0;34m"
