@@ -43,14 +43,31 @@ string promptUser() {
 void startNewGame(bool colourEnabled, bool symbolsEnabled) {
     cout << "Starting a New Game" << endl << endl;
     
-    // TODO prompt for how many players there should be
+    // Get number of players from user
+    cout << "How many players are there?" << endl;
+    std::string playerCountString = promptUser();
 
-    GameController* theGame = new GameController(2, colourEnabled,
-                                                 symbolsEnabled);
-    cout << "Let's Play!" << endl;
-    theGame->gameStart();
-    theGame->gameLoop();
-    delete theGame;
+    try {
+        int playerCount = std::stoi(playerCountString);
+
+        if (playerCount >= 2 && playerCount <= 4) {
+             GameController* theGame
+                = new GameController(playerCount, colourEnabled,
+                                     symbolsEnabled);
+            cout << "Let's Play!" << endl;
+
+            theGame->gameStart();
+            theGame->gameLoop();
+
+            delete theGame;
+        } else {
+            cout << "Invalid input. The number of players in a game must be "
+                 << "between 2 and 4." << endl << endl;
+        }
+    } catch (...) {
+        cout << "Invalid input." << endl << endl;
+        // Exits program
+    }    
 }
 
 bool loadGame(bool colourEnabled, bool symbolsEnabled) {
@@ -216,14 +233,10 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
                 success = true;
 
                 cout << "Qwirkle game successfully loaded" << endl;
-                GameController* theGame = new GameController(players,
-                                                             noPlayers,
-                                                             board,
-                                                             tileList,
-                                                             currPlayerNo,
-                                                             firstTurn,
-                                                             colourEnabled,
-                                                             symbolsEnabled);
+                GameController* theGame
+                    = new GameController(players, noPlayers, board, tileList,
+                                         currPlayerNo, firstTurn, colourEnabled,
+                                         symbolsEnabled);
                 theGame->gameLoop();
                 delete theGame;
             } else {
