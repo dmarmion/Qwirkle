@@ -366,6 +366,11 @@ bool Game::saveGame(std::string filename) {
         std::ofstream outFile;
         outFile.open(filename);
 
+        // Indicate non-standard format for 3/4 player games
+        if (pCount > 2) {
+            outFile << "#P" << pCount << std::endl;
+        }
+
         // Write players
         for (int i = 0; i < pCount; ++i) {
             outFile << players[i]->serialise();
