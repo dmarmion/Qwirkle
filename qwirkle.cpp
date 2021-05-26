@@ -103,13 +103,24 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
     const int linesPerPlayer = 3;
     const int gameStateLines = 4;
 
-    // Verify the file had enough lines in it as a sanity check
-    // TODO make this handle multiple players
+    // Number of players is expected to be 2, unless declared otherwise
     int noPlayers = 2;
+
+    // Number of lines from the top to begin reading game data
+    int dataOffset = 0;
+
+    // Verify the file has enough lines in it as a sanity check
     if (lines.size() >= (linesPerPlayer
                          * (unsigned int) noPlayers) + gameStateLines) {
         try {
             bool formatIsValid = true;
+
+            // Check for Milestone 3-format games
+            if (lines.at(0).at(0) == '#') {
+                // Number of players is stored in index 2 of the first line
+                noPlayers = std::stoi(lines.at(0).substr(2, 1));
+                ++dataOffset;
+            }
 
             Player* players[noPlayers];
             for (int i = 0; i < noPlayers; ++i) {
@@ -118,16 +129,18 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
 
             // Create players
             for (int i = 0; i < noPlayers; ++i) {
-                string name = lines.at((i * linesPerPlayer));
+                string name = lines.at((i * linesPerPlayer) + dataOffset);
                 players[i] = new Player(name);
 
                 // Set player's score
-                int score = std::stoi(lines.at((i * linesPerPlayer) + 1));
+                int score = std::stoi(lines.at((i * linesPerPlayer) + 1
+                                                + dataOffset));
                 players[i]->setScore(score);
 
                 // Fill player's hand
                 std::vector<string> tileStrings =
-                    splitString(lines.at((i * linesPerPlayer) + 2), ",");
+                    splitString(lines.at((i * linesPerPlayer) + 2 + dataOffset),
+                                 ",");
                 
                 for (unsigned int j = 0; j < tileStrings.size(); ++j) {
                     char colour = tileStrings.at(j).at(0);
@@ -150,7 +163,7 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
             bool firstTurn = false;
 
             // Add tiles to board
-            int boardTilesLine = (linesPerPlayer * noPlayers) + 1;
+            int boardTilesLine = (linesPerPlayer * noPlayers) + 1 + dataOffset;
             std::vector<string> placedTiles =
                 splitString(lines.at(boardTilesLine), ", ");
 
@@ -186,7 +199,8 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
 
             // Create tile bag
             std::vector<string> bagTiles =
-                splitString(lines.at((linesPerPlayer * noPlayers) + 2), ",");
+                splitString(lines.at((linesPerPlayer * noPlayers) + 2
+                                      + dataOffset), ",");
 
             LinkedList tileList;
             for (unsigned int i = 0; i < bagTiles.size(); ++i) {
@@ -213,7 +227,7 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
 
             // Store current player
             string currPlayerName =
-                lines.at((linesPerPlayer * noPlayers) + 3);
+                lines.at((linesPerPlayer * noPlayers) + 3 + dataOffset);
 
             // Determine which player is the current player
             int currPlayerNo = -1;
