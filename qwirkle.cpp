@@ -296,7 +296,7 @@ void showCredits() {
 }
 
 int main(void) {
-    cout << "Welcome to Quirkle!" << endl << "-------------------" << endl;
+    cout << "Welcome to Qwirkle!" << endl << "-------------------" << endl;
     atexit(terminationMessage);
 
     // Enhancement toggles
