@@ -6,8 +6,7 @@
 #include "Player.h"
 #include "TileCodes.h"
 
-class Game
-{
+class Game {
 private:
     Board* board;
     LinkedList* tileBag;

@@ -18,7 +18,7 @@ Game::Game(int playerCount) {
     for (int colour = 0; colour < NUM_COLOURS; colour++)
     {
         // Forgot the offset as shapes go 1-6 not 0-5
-        for (int shape = 1; shape < NUM_SHAPES+1; shape++)
+        for (int shape = 1; shape < NUM_SHAPES + 1; shape++)
         {
             Tile* tile = new Tile(colorsArray[colour], shape);
             // Will just call the add method twice instead of putting in a loop
@@ -41,7 +41,7 @@ Game::Game(Game& other) {
     this->board = new Board(*other.board);
     this->tileBag = new LinkedList(*other.tileBag);
     this->players = new Player*[other.pCount]{};
-    for (int i = 0; i <other.pCount ; ++i) {
+    for (int i = 0; i < other.pCount ; ++i) {
         this->addPlayer(other.getPlayer(i));
     }
     currentPlayer = new Player(*other.currentPlayer);

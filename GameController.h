@@ -15,7 +15,7 @@ private:
 
 public:
     GameController(int playerCount, bool colourEnabled, bool symbolsEnabled);
-    GameController(Player* p1, Player* p2, Board& board, LinkedList& tileBag,
+    GameController(Player** players, int playerCount, Board& board, LinkedList& tileBag,
                    int currentPlayerNo, bool firstTurn, bool colourEnabled,
                    bool symbolsEnabled);
     ~GameController();

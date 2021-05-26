@@ -10,7 +10,6 @@
 #include <vector>
 
 #define EXIT_SUCCESS 0
-#define NUM_PLAYERS 2
 
 using std::cout;
 using std::cin;
@@ -43,7 +42,10 @@ string promptUser() {
 
 void startNewGame(bool colourEnabled, bool symbolsEnabled) {
     cout << "Starting a New Game" << endl << endl;
-    GameController* theGame = new GameController(NUM_PLAYERS, colourEnabled,
+    
+    // TODO prompt for how many players there should be
+
+    GameController* theGame = new GameController(2, colourEnabled,
                                                  symbolsEnabled);
     cout << "Let's Play!" << endl;
     theGame->gameStart();
@@ -84,17 +86,20 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
     const int gameStateLines = 4;
 
     // Verify the file had enough lines in it as a sanity check
-    if (lines.size() >= (linesPerPlayer * NUM_PLAYERS) + gameStateLines) {
+    // TODO make this handle multiple players
+    int noPlayers = 2;
+    if (lines.size() >= (linesPerPlayer
+                         * (unsigned int) noPlayers) + gameStateLines) {
         try {
             bool formatIsValid = true;
 
-            Player* players[NUM_PLAYERS];
-            for (int i = 0; i < NUM_PLAYERS; ++i) {
+            Player* players[noPlayers];
+            for (int i = 0; i < noPlayers; ++i) {
                 players[i] = nullptr;
             }
 
             // Create players
-            for (int i = 0; i < NUM_PLAYERS; ++i) {
+            for (int i = 0; i < noPlayers; ++i) {
                 string name = lines.at((i * linesPerPlayer));
                 players[i] = new Player(name);
 
@@ -127,7 +132,7 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
             bool firstTurn = false;
 
             // Add tiles to board
-            int boardTilesLine = (linesPerPlayer * NUM_PLAYERS) + 1;
+            int boardTilesLine = (linesPerPlayer * noPlayers) + 1;
             std::vector<string> placedTiles =
                 splitString(lines.at(boardTilesLine), ", ");
 
@@ -163,7 +168,7 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
 
             // Create tile bag
             std::vector<string> bagTiles =
-                splitString(lines.at((linesPerPlayer * NUM_PLAYERS) + 2), ",");
+                splitString(lines.at((linesPerPlayer * noPlayers) + 2), ",");
 
             LinkedList tileList;
             for (unsigned int i = 0; i < bagTiles.size(); ++i) {
@@ -190,18 +195,18 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
 
             // Store current player
             string currPlayerName =
-                lines.at((linesPerPlayer * NUM_PLAYERS) + 3);
+                lines.at((linesPerPlayer * noPlayers) + 3);
 
             // Determine which player is the current player
             int currPlayerNo = -1;
-            for (int i = 0; i < NUM_PLAYERS; ++i) {
+            for (int i = 0; i < noPlayers; ++i) {
                 Player* p = players[i];
                 if (p != nullptr && p->getName() == currPlayerName) {
                     currPlayerNo = i;
                 }
             }
 
-            if (currPlayerNo < 0 || currPlayerNo >= NUM_PLAYERS) {
+            if (currPlayerNo < 0 || currPlayerNo >= noPlayers) {
                 formatIsValid = false;
             }
 
@@ -211,8 +216,8 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
                 success = true;
 
                 cout << "Qwirkle game successfully loaded" << endl;
-                GameController* theGame = new GameController(players[0],
-                                                             players[1],
+                GameController* theGame = new GameController(players,
+                                                             noPlayers,
                                                              board,
                                                              tileList,
                                                              currPlayerNo,
@@ -226,7 +231,7 @@ bool loadGame(bool colourEnabled, bool symbolsEnabled) {
             }
 
             // Clean up memory
-            for (int i = 0; i < NUM_PLAYERS; ++i) {
+            for (int i = 0; i < noPlayers; ++i) {
                 if (players[i] != nullptr) {
                     delete players[i];
                 }
