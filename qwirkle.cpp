@@ -46,6 +46,7 @@ void startNewGame(bool colourEnabled, bool symbolsEnabled) {
     // Get number of players from user
     cout << "How many players are there?" << endl;
     std::string playerCountString = promptUser();
+    cout << endl;
 
     try {
         int playerCount = std::stoi(playerCountString);

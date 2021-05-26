@@ -98,6 +98,25 @@ void Game::setCurrentPlayer(Player* playa) {
     currentPlayer = playa;
 }
 
+Player* Game::nextPlayer() {
+    Player* next = nullptr;
+
+    if (currentPlayer != nullptr) {
+        // Get array index of currentPlayer
+        int currIndex = 0;
+        for (int i = 0; i < pCount; ++i) {
+            if (players[i] == currentPlayer) {
+                currIndex = i;
+            }
+        }
+
+        int nextIndex = (currIndex + 1) % pCount;
+        next = players[nextIndex];
+    }
+
+    return next;
+}
+
 Board* Game::getBoard() {
     return board;
 }
@@ -411,7 +430,6 @@ bool Game::swapTile(Tile* t){
         tileBag->removeFront();
         success = true;
 
-        // Will this be needed? 
         delete sTile;
     }
     return success;

@@ -43,6 +43,7 @@ public:
     Player* getPlayer(int i);
     Player* getCurrentPlayer();
     void setCurrentPlayer(Player* playa);
+    Player* nextPlayer();
 
     Board* getBoard();
     LinkedList* getTileBag();

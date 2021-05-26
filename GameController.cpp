@@ -113,32 +113,25 @@ void GameController::gameLoop()
             // If the last move emptied the player hand, end the game, this can
             // only happen after the TileBag was emptied, so no need to check
             // for that.
-            if (game->getCurrentPlayer()->getHand()->getSize() == 0)
-            {
+            if (game->getCurrentPlayer()->getHand()->getSize() == 0) {
                 cout << game->getBoard()->toString() << endl;
                 game->getCurrentPlayer()->setScore(
                     (game->getCurrentPlayer()->getScore() + 6));
                 keepGoing = false;
                 cout << "Game over" << endl;
-                cout << "Score for " << game->getPlayer(0)->getName() << ": "
-                     << game->getPlayer(0)->getScore() << endl;
-                cout << "Score for " << game->getPlayer(1)->getName() << ": "
-                     << game->getPlayer(1)->getScore() << endl;
+
+                for (int i = 0; i < game->getPlayerCount(); ++i) {
+                    cout << "Score for " << game->getPlayer(i)->getName() << ": "
+                     << game->getPlayer(i)->getScore() << endl;
+                }
+
                 cout << "Player " << game->getWinner()->getName() << " won!"
                      << endl;
             } else {
                 // switch current player if move was a success, and reprint
                 // board, but not if the game has finished
-                if (moveSuccess == true)
-                {
-                    if (game->getCurrentPlayer() == game->getPlayer(0))
-                    {
-                        game->setCurrentPlayer(game->getPlayer(1));
-                    }
-                    else
-                    {
-                        game->setCurrentPlayer(game->getPlayer(0));
-                    }
+                if (moveSuccess) {
+                    game->setCurrentPlayer(game->nextPlayer());
                     printScoreBoardHand();
                 }
             }
@@ -319,17 +312,18 @@ bool GameController::validate_save(std::vector<std::string> &input)
     return isValid;
 }
 
-void GameController::printScoreBoardHand()
-{
-    // Print current state of the game/board
+void GameController::printScoreBoardHand() {
+    // Print current state of the game and board
     cout << endl
          << game->getCurrentPlayer()->getName() << ", it's your turn"
-         << endl
-         << "Score for " << game->getPlayer(0)->getName() << ": "
-         << game->getPlayer(0)->getScore() << endl
-         << "Score for " << game->getPlayer(1)->getName() << ": "
-         << game->getPlayer(1)->getScore() << endl
-         << game->getBoard()->toString(colourEnabled, symbolsEnabled) << endl
+         << endl;
+    
+    for (int i = 0; i < pCount; ++i) {
+        cout << "Score for " << game->getPlayer(i)->getName() << ": "
+         << game->getPlayer(i)->getScore() << endl;
+    }
+        
+    cout << game->getBoard()->toString(colourEnabled, symbolsEnabled) << endl
          << endl
          << "Your hand is " << endl
          << game->getCurrentPlayer()->getHand()
