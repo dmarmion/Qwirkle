@@ -1,0 +1,76 @@
+Welcome to Qwirkle!
+-------------------
+Menu
+----
+1. New Game
+2. Load Game
+3. Credits (Show student information)
+4. Quit
+5. Enable/disable coloured printing
+6. Enable/disable unicode tile symbols
+
+> 
+Coloured printing disabled.
+
+Menu
+----
+1. New Game
+2. Load Game
+3. Credits (Show student information)
+4. Quit
+5. Enable/disable coloured printing
+6. Enable/disable unicode tile symbols
+
+> 
+Unicode tile symbols disabled.
+
+Menu
+----
+1. New Game
+2. Load Game
+3. Credits (Show student information)
+4. Quit
+5. Enable/disable coloured printing
+6. Enable/disable unicode tile symbols
+
+> 
+Enter the filename from which to load a game
+> Qwirkle game successfully loaded
+
+A, it's your turn
+Score for A: 10
+Score for B: 20
+   0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 
+  -------------------------------------------------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |R1|R2|R3|R4|R5|R6|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+E |  |  |  |O1|O2|O3|O4|O5|O6|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+F |  |  |  |Y1|Y2|Y3|Y4|Y5|Y6|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+G |  |  |  |G1|G2|G3|G4|G5|G6|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+H |  |  |  |B1|B2|B3|B4|B5|B6|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+I |  |  |  |P1|P2|P3|P4|P5|P6|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+M |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+N |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+O |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+P |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+Q |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+R |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+S |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+T |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+U |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+V |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+W |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+X |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+Y |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+Z |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+
+Your hand is 
+R1,O2,Y3,G4,B5,P6
+
+> 
+Goodbye
