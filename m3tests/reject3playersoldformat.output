@@ -1,0 +1,39 @@
+Welcome to Qwirkle!
+-------------------
+Menu
+----
+1. New Game
+2. Load Game
+3. Credits (Show student information)
+4. Quit
+5. Enable/disable coloured printing
+6. Enable/disable unicode tile symbols
+
+> 
+Coloured printing disabled.
+
+Menu
+----
+1. New Game
+2. Load Game
+3. Credits (Show student information)
+4. Quit
+5. Enable/disable coloured printing
+6. Enable/disable unicode tile symbols
+
+> 
+Unicode tile symbols disabled.
+
+Menu
+----
+1. New Game
+2. Load Game
+3. Credits (Show student information)
+4. Quit
+5. Enable/disable coloured printing
+6. Enable/disable unicode tile symbols
+
+> 
+Enter the filename from which to load a game
+> The file loaded is not a valid Qwirkle save.
+Goodbye
